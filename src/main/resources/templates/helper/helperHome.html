@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<meta charset="UTF-8">
+<title>Helper Home </title>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Helper  Desk</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+    </ul>
+    
+    <ul class="nav navbar-nav navbar-right">
+      	<li>
+      	<form th:action="@{/helper/logout}" method="post">
+            <input type="submit" value="Logout" class="btn btn-info"/>
+	</form>
+	</li>
+    </ul>
+  </div>
+</nav>
+
+<h2 th:text="'Hi, ' + ${username} + '!'"></h2>
+<hr>
+
+        <div th:if="${tickets!=null and !tickets.empty}">
+		<h2> These tickets are currently assigned to you: </h2>
+		<hr>
+		
+		<table class="table table-hover">
+		
+		<tr> 
+		<th scope="col">Ticket Id</th>
+		<th scope="col">Date Created</th>
+		<th scope="col">Ticket Description</th>
+		<th scope="col">Programming Language</th>
+		<th scope="col">Opened by</th>
+		<th scope="col">Close Ticket?</th>
+		</tr>
+		
+		<tr th:each="ticket : ${tickets}">
+		<td th:text="${ticket.ticketId}" /></td>
+		<td th:text="${ticket.dateCreated}"/></td>
+		<td th:text="${ticket.description}" /></td>
+		<td th:text="${ticket.pLanguage.name}" /></td>
+		<td th:text="${ticket.trainee.username}" /></td>
+		<td><a th:href="@{'close/'+${ticket.ticketId}}" class="btn btn-success" role="button">Close</a></td>
+		</tr>
+		</table>
+	</div>
+	</div>
+	
+	<div th:if="${tickets!=null and tickets.empty}">
+		<h2> There are no tickets assigned to you right now. Enjoy your time off! </h2>
+	</div>
+	
+</body>
+</html>
+

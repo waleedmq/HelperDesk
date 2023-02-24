@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<meta charset="UTF-8">
+<title>Create Ticket</title>
+</head>
+
+<body>	
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Trainee Helper Desk</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="nav-brand"><a href="/trainee/home">Home</a></li>
+	  <li><a  class = "active "href="#">Create Ticket</a></li>
+    </ul>
+    
+    <ul class="nav navbar-nav navbar-right">
+      	<li>
+      	<form th:action="@{/trainee/logout}" method="post">
+            <input type="submit" value="Logout" class="btn btn-info"/>
+	</form>
+	</li>
+    </ul>
+  </div>
+</nav>
+
+
+	<form method="post" th:action="@{/trainee/createTicket}">
+	
+	<h3>Select the Programming Language you are having problems with:</h3>
+        <select name="languageId" class="form-select form-select-sm">
+            <option th:each="language : ${allPLanguages}"
+                    th:value="${language.languageId}"
+                    th:text="${language.name}">
+            </option>
+        </select>
+	<h3>Please describe your problem:</h3>
+	<div class="form-outline w-50 mb-4">
+	
+			<textarea type="text" name="description" placeholder="Description of Problem" rows = "3" cols="75"></textarea>
+	</div>
+    <hr>
+		<input type="submit" value="Create Ticket" class="btn btn-primary"/>
+	</form>
+	
+</body>
+</html>
+
+	

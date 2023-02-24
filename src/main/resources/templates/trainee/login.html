@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<meta charset="UTF-8">
+<title>Trainee Login</title>
+</head>
+
+<body>
+<h1>Trainee Login</h1>
+<hr>
+
+<form th:action="@{/trainee/login}" method="post" style="max-width: 400px; margin: 0 auto;">
+     
+    <div th:if="${param.error}">
+        <h4 style="color: red">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</h4>
+    </div>
+         
+
+            <h3>Trainee Username</h3>
+            <input type="text" name="username" class = "form-control" required />
+
+			<h3>Password</h3>
+            <input type="password" name="password"  class = "form-control" required />
+
+			<p>
+			<p>
+			<p>
+			 <div class="col-sm-offset-2 col-sm-10">
+            <input type="submit" value="Login" class="btn btn-primary"/>
+			</div>
+</form>
+</body>
+</html>
